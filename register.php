@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once "koneksi.php";
 
     // $id_user = $_POST["id_user"];
-    $nik = $_POST["nik"];
+    // $nik = $_POST["nik"];
     $nama_user = $_POST["nama_user"];
     $email = $_POST["email"];
     $no_hp = $_POST["no_hp"];
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
 
         $query_tambah_user = "INSERT INTO data_user VALUES
-        ('', '$nik','$nama_user','$email','$no_hp', '$password','$jenis_kelamin', '$tgl_lahir', '$alamat', '')";
+        ('', '$nama_user', '$email', '$no_hp', '$password', '$jenis_kelamin', '$tgl_lahir', '$alamat', '')";
 
         $result = mysqli_query($koneksi, $query_tambah_user);
         $cek = mysqli_affected_rows($koneksi);
