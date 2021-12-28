@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST["email"];
     $no_hp = $_POST["no_hp"];
     $password = $_POST["password"];
+    $konfirmPassword = $_POST["konfirm_password"];
     $jenis_kelamin = $_POST["jenis_kelamin"];
     $tgl_lahir = $_POST["tgl_lahir"];
     $alamat = $_POST["alamat"];
@@ -35,6 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $response["kode"] = 0;
         $response["pesan"] = "Nomor handphone sudah digunakan";
+    } else if ($password != $konfirmPassword) {
+
+        $response["kode"] = 0;
+        $response["pesan"] = "Konfirmasi password tidak sesuai";
     } else {
 
         $query_tambah_user = "INSERT INTO data_user VALUES
