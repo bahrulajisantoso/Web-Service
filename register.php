@@ -36,11 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $response["kode"] = 0;
         $response["pesan"] = "Nomor handphone sudah digunakan";
+    } else if (strlen($password) < 8) {
+
+        $response["kode"] = 0;
+        $response["pesan"] = "Password min 8 karakter";
     } else if ($password != $konfirmPassword) {
 
         $response["kode"] = 0;
         $response["pesan"] = "Konfirmasi password tidak sesuai";
     } else {
+        // enkripsi password
+        // $password = password_hash($password, PASSWORD_DEFAULT);
+        $password = md5($password);
 
         $query_tambah_user = "INSERT INTO data_user VALUES
         ('', '$nama_user', '$email', '$no_hp', '$password', '$jenis_kelamin', '$tgl_lahir', '$alamat', '')";

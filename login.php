@@ -25,14 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             while ($baris = mysqli_fetch_assoc($result_pass)) {
                 $ambil = $baris;
             }
+
             $response["kode"] = 200;
             $response["pesan"] = "Login berhasil";
             $response["data"] = $ambil;
         } else {
+
             $response["kode"] = 401;
             $response["pesan"] = "Password anda salah";
         }
     } else {
+
         $response["kode"] = 404;
         $response["pesan"] = "User tidak ditemukan";
     }
