@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST["email"];
     $no_hp = $_POST["no_hp"];
     $password = $_POST["password"];
-    $konfirmPassword = $_POST["konfirm_password"];
+    $konfirm_password = $_POST["konfirm_password"];
     $jenis_kelamin = $_POST["jenis_kelamin"];
     $tgl_lahir = $_POST["tgl_lahir"];
     $alamat = $_POST["alamat"];
@@ -40,14 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $response["kode"] = 0;
         $response["pesan"] = "Password min 8 karakter";
-    } else if ($password != $konfirmPassword) {
+    } else if ($password != $konfirm_password) {
 
         $response["kode"] = 0;
         $response["pesan"] = "Konfirmasi password tidak sesuai";
     } else {
+
         // enkripsi password
-        // $password = password_hash($password, PASSWORD_DEFAULT);
-        $password = md5($password);
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         $query_tambah_user = "INSERT INTO data_user VALUES
         ('', '$nama_user', '$email', '$no_hp', '$password', '$jenis_kelamin', '$tgl_lahir', '$alamat', '')";
@@ -58,12 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($cek > 0) {
             $response["kode"] = 1;
             $response["pesan"] = "Registrasi Berhasil";
-        } else if ($cek == 0) {
+        } else {
             $response["kode"] = 0;
             $response["pesan"] = "Registrasi Gagal";
-        } else {
-            $response["kode"] = -1;
-            $response["pesan"] = "Error";
         }
     }
     echo json_encode($response);

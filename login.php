@@ -12,31 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $cek_email = mysqli_num_rows($result_email);
 
-    $response = array();
+    if ($cek_email === 1) {
 
-    if ($cek_email > 0) {
+        $baris = mysqli_fetch_assoc($result_email);
 
-        $query_pass = "SELECT * FROM data_user WHERE email = '$email' && password = '$password'";
-        $result_pass = mysqli_query($koneksi, $query_pass);
-        $cek_pass = mysqli_num_rows($result_pass);
+        if (password_verify($password, $baris["password"])) {
 
-        if ($cek_pass > 0) {
-
-            while ($baris = mysqli_fetch_assoc($result_pass)) {
-                $ambil = $baris;
-            }
-
-            $response["kode"] = 200;
+            $response["kode"] = 1;
             $response["pesan"] = "Login berhasil";
-            $response["data"] = $ambil;
+            $response["data"] = array(
+                "id_user" => $baris["id_user"],
+                "nama_user" => $baris["nama_user"],
+                "email" => $baris["email"],
+                "no_hp" => $baris["no_hp"],
+                "jenis_kelamin" => $baris["jenis_kelamin"],
+                "tgl_lahir" => $baris["tgl_lahir"],
+                "alamat" => $baris["alamat"],
+                // "gambar" => $baris["id_user"]
+            );
         } else {
 
-            $response["kode"] = 401;
+            $response["kode"] = 0;
             $response["pesan"] = "Password anda salah";
         }
     } else {
 
-        $response["kode"] = 404;
+        $response["kode"] = 0;
         $response["pesan"] = "User tidak ditemukan";
     }
     echo json_encode($response);
