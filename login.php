@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $cek_email = mysqli_num_rows($result_email);
 
-    $ambil = array();
+    $response = array();
 
     if ($cek_email > 0) {
 
