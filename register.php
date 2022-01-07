@@ -36,14 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $response["kode"] = 0;
         $response["pesan"] = "Nomor handphone sudah digunakan";
-    } else if (strlen($password) < 8) {
-
-        $response["kode"] = 0;
-        $response["pesan"] = "Password min 8 karakter";
-    } else if ($password != $konfirm_password) {
-
-        $response["kode"] = 0;
-        $response["pesan"] = "Konfirmasi password tidak sesuai";
     } else {
 
         // enkripsi password

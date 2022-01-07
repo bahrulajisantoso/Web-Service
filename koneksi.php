@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "project";
+$db   = "project2";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db)
     or die("database mysql tidak terhubung");
