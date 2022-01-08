@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $cek_email = mysqli_num_rows($result_email);
 
-    if ($cek_email === 1) {
+    if ($cek_email == 1) {
 
         $baris = mysqli_fetch_assoc($result_email);
 

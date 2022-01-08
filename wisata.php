@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $response["kode"]   = 1;
         $response["pesan"]  = "data tersedia";
         $response["data"] = $ambil;
-    } else if ($cek = 0) {
+    } else if ($cek == 0) {
         $response["kode"] = 0;
         $response["pesan"] = "data tidak tersedia";
     } else {
