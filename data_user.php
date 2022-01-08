@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $ambil = array();
 
-    if ($cek == 1) {
+    if ($cek > 0) {
         while ($baris = mysqli_fetch_assoc($result)) {
             $ambil[] = $baris;
         }
