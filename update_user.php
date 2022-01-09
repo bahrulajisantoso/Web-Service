@@ -37,6 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $response["kode"] = 1;
         $response["pesan"] = "Edit data berhasil silahkan login kembali";
+    } else if ($cek == 0) {
+
+        $response["kode"] = 0;
+        $response["pesan"] = "Anda tidak melakukan perubahan";
     } else {
 
         $response["kode"] = 0;
